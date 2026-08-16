@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Karang Taruna Purabhakti - Pekon Purajaya</title>
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0" rel="stylesheet">
+  
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "error": "#ba1a1a",
+            "surface-container": "#e5eeff",
+            "on-secondary-container": "#5c2400",
+            "secondary-fixed-dim": "#ffb690",
+            "outline": "#757682",
+            "surface-tint": "#4059aa",
+            "on-primary-fixed": "#00164e",
+            "surface": "#f8f9ff",
+            "outline-variant": "#c5c5d3",
+            "secondary": "#9d4300",
+            "on-tertiary": "#ffffff",
+            "secondary-fixed": "#ffdbca",
+            "tertiary-container": "#004565",
+            "inverse-on-surface": "#eaf1ff",
+            "on-background": "#0b1c30",
+            "on-tertiary-fixed": "#001e2f",
+            "on-error": "#ffffff",
+            "inverse-surface": "#213145",
+            "on-surface-variant": "#444651",
+            "error-container": "#ffdad6",
+            "background": "#f8f9ff",
+            "on-tertiary-fixed-variant": "#004c6e",
+            "surface-container-highest": "#d3e4fe",
+            "tertiary": "#002e44",
+            "on-tertiary-container": "#36b6fb",
+            "surface-variant": "#d3e4fe",
+            "primary-fixed": "#dce1ff",
+            "on-surface": "#0b1c30",
+            "surface-container-low": "#eff4ff",
+            "primary-fixed-dim": "#b6c4ff",
+            "on-primary": "#ffffff",
+            "surface-bright": "#f8f9ff",
+            "on-primary-container": "#90a8ff",
+            "inverse-primary": "#b6c4ff",
+            "on-error-container": "#93000a",
+            "primary": "#00236f",
+            "primary-container": "#1e3a8a",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#c9e6ff",
+            "on-primary-fixed-variant": "#264191",
+            "surface-container-high": "#dce9ff",
+            "on-secondary-fixed-variant": "#783200",
+            "on-secondary-fixed": "#341100",
+            "tertiary-fixed-dim": "#89ceff",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#fd761a",
+            "surface-dim": "#cbdbf5"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "sm": "8px",
+            "margin-mobile": "16px",
+            "xxl": "80px",
+            "lg": "24px",
+            "max-width": "1200px",
+            "xl": "40px",
+            "gutter": "24px",
+            "xs": "4px",
+            "md": "16px",
+            "margin-desktop": "auto",
+            "base": "4px"
+          },
+          fontFamily: {
+            sans: ["Hanken Grotesk", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .hero-slider {
+      transition: opacity 1s ease-in-out;
+    }
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined', sans-serif;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-sans antialiased selection:bg-secondary selection:text-on-secondary">
+
+  <!-- Top AppBar Header -->
+  <header class="bg-surface/90 dark:bg-background/90 backdrop-blur-md text-primary dark:text-primary-fixed-dim fixed top-0 inset-x-0 z-50 border-b border-outline-variant dark:border-outline shadow-sm h-16 transition-all">
+    <div class="max-w-max-width mx-auto px-4 md:px-lg h-full flex justify-between items-center">
+      <!-- Logo Brand -->
+      <a href="#hero" class="flex items-center gap-sm">
+        <img src="logo.jpg" alt="Logo Karang Taruna" class="h-10 w-auto object-contain rounded-md">
+        <span class="text-xl md:text-headline-md font-extrabold text-primary dark:text-primary-fixed-dim">Karang Taruna Purabhakti</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex gap-lg items-center">
+        <a class="text-secondary dark:text-secondary-fixed font-bold border-b-2 border-secondary dark:border-secondary-fixed py-1 transition-all" href="#hero">Beranda</a>
+        <a class="text-on-surface-variant dark:text-on-surface hover:text-primary dark:hover:text-primary-fixed-dim py-1 transition-colors" href="#profil">Profil</a>
+        <a class="text-on-surface-variant dark:text-on-surface hover:text-primary dark:hover:text-primary-fixed-dim py-1 transition-colors" href="#struktur">Struktur</a>
+        <a class="text-on-surface-variant dark:text-on-surface hover:text-primary dark:hover:text-primary-fixed-dim py-1 transition-colors" href="#kontak">Kontak</a>
+      </nav>
+
+      <!-- Tombol Join Us Mengarah ke Instagram -->
+      <a href="https://instagram.com/karangtaruna.purabhakti" target="_blank" rel="noopener noreferrer" class="hidden md:flex bg-secondary text-on-secondary px-lg py-sm rounded-full font-bold hover:opacity-90 active:scale-95 transition-all">
+        Join Us
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button id="menu-toggle" aria-label="Toggle Menu" class="md:hidden p-sm text-primary flex items-center justify-center">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <nav id="mobile-menu" class="md:hidden fixed top-16 inset-x-0 bg-surface shadow-lg hidden flex-col z-40 border-b border-outline-variant transition-all">
+    <a class="px-margin-mobile py-md text-secondary font-bold border-b border-surface-container-low" href="#hero">Beranda</a>
+    <a class="px-margin-mobile py-md text-on-surface-variant hover:bg-surface-container-low border-b border-surface-container-low" href="#profil">Profil</a>
+    <a class="px-margin-mobile py-md text-on-surface-variant hover:bg-surface-container-low border-b border-surface-container-low" href="#struktur">Struktur</a>
+    <a class="px-margin-mobile py-md text-on-surface-variant hover:bg-surface-container-low" href="#kontak">Kontak</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="relative w-full min-h-[100dvh] pt-16 flex items-center justify-center overflow-hidden">
+    <div id="slide1" class="hero-slider absolute inset-0 bg-cover bg-center opacity-100" style="background-image: url('home 1.jpg');"></div>
+    <div id="slide2" class="hero-slider absolute inset-0 bg-cover bg-center opacity-0" style="background-image: url('home 2.jpeg');"></div>
+    <div id="slide3" class="hero-slider absolute inset-0 bg-cover bg-center opacity-0" style="background-image: url('home 3.jpg');"></div>
+    
+    <div class="absolute inset-0 bg-on-background/65"></div>
+
+    <div class="relative z-10 text-center px-4 md:px-lg max-w-max-width mx-auto flex flex-col items-center gap-md md:gap-lg py-12">
+      <h1 class="text-on-primary text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight max-w-4xl drop-shadow-md">
+        Karang Taruna Purabhakti: Bersatu, Berkarya, Membangun Desa
+      </h1>
+      <p class="text-on-primary/90 text-base md:text-lg max-w-2xl drop-shadow">
+        Wadah pemuda Pekon Purajaya untuk mempersatukan gagasan, mengoptimalkan potensi lokal, dan membawa dampak positif bagi kemajuan bersama.
+      </p>
+      <div class="flex flex-wrap gap-md justify-center mt-sm">
+        <a href="#profil" class="bg-secondary text-on-secondary px-lg py-sm rounded-full font-bold hover:opacity-90 active:scale-95 transition-all">
+          Pelajari Lebih Lanjut
+        </a>
+        <a href="#kontak" class="bg-surface-container-lowest/20 backdrop-blur-md text-on-primary border border-on-primary/40 px-lg py-sm rounded-full font-bold hover:bg-surface-container-lowest/30 active:scale-95 transition-all">
+          Hubungi Kami
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Profile Section -->
+  <section id="profil" class="py-16 md:py-xxl bg-surface-container-lowest">
+    <div class="max-w-max-width mx-auto px-4 md:px-lg">
+      <div class="flex flex-col lg:flex-row gap-xl items-center">
+        <div class="w-full lg:w-1/2 flex flex-col gap-lg">
+          <div class="flex items-center gap-sm">
+            <span class="w-12 h-1 bg-secondary rounded-full"></span>
+            <h2 class="text-primary text-2xl md:text-headline-lg font-bold">Profil Kami</h2>
+          </div>
+          <div class="text-base md:text-lg text-on-surface-variant flex flex-col gap-md leading-relaxed">
+            <p>
+              <strong>Karang Taruna Purabhakti</strong> berdiri pada tanggal <strong>20 Maret 2003</strong> dan secara resmi dilantik di Gedung Pekon Purajaya. Berada di bawah naungan Penasihat Peratin Pekon Purajaya, organisasi ini hadir sebagai wadah inklusif bagi seluruh pemuda di Pekon Purajaya.
+            </p>
+            <p>
+              Dengan jumlah keanggotaan terdata sebanyak 30 orang yang mencakup seluruh pemuda di Pekon Purajaya, Karang Taruna Purabhakti bertujuan mempersatukan bahasa, pikiran, karakter, serta keberagaman budaya. Selain itu, kami berkomitmen mengoptimalkan berbagai peluang desa, baik di bidang pariwisata maupun sektor potensi lainnya.
+            </p>
+            <p>
+              Tersebar di <strong>6 Pemangku Pekon Purajaya</strong>, semangat dan solidaritas para pemudanya diharapkan mampu memberikan dampak positif secara nyata untuk memajukan Desa Purajaya secara berkelanjutan.
+            </p>
+          </div>
+          
+          <!-- Key Metrics / Statistics -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-md pt-sm">
+            <div class="bg-surface p-md rounded-xl border border-outline-variant/40 flex flex-col">
+              <span class="text-secondary font-extrabold text-xl">20 Maret 2003</span>
+              <span class="text-xs text-on-surface-variant font-medium mt-1">Tanggal Berdiri</span>
+            </div>
+            <div class="bg-surface p-md rounded-xl border border-outline-variant/40 flex flex-col">
+              <span class="text-secondary font-extrabold text-xl">30 Pemuda</span>
+              <span class="text-xs text-on-surface-variant font-medium mt-1">Anggota Terdata</span>
+            </div>
+            <div class="bg-surface p-md rounded-xl border border-outline-variant/40 flex flex-col col-span-2 sm:col-span-1">
+              <span class="text-secondary font-extrabold text-xl">6 Pemangku</span>
+              <span class="text-xs text-on-surface-variant font-medium mt-1">Wilayah Pekon</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/2 relative">
+          <div class="absolute -inset-4 bg-gradient-to-tr from-surface-tint/20 to-secondary-container/10 rounded-2xl blur-xl z-0"></div>
+          <div class="relative z-10 overflow-hidden rounded-2xl shadow-lg border border-outline-variant/30">
+            <img class="w-full h-72 sm:h-96 object-cover" src="home 1.jpg" alt="Kegiatan Karang Taruna Purabhakti Pekon Purajaya">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Structural Section -->
+  <section id="struktur" class="py-16 md:py-xxl bg-surface">
+    <div class="max-w-max-width mx-auto px-4 md:px-lg flex flex-col gap-xl">
+      <div class="text-center flex flex-col items-center gap-sm">
+        <span class="w-12 h-1 bg-secondary rounded-full"></span>
+        <h2 class="text-primary text-2xl md:text-headline-lg font-bold">Struktur Organisasi</h2>
+        <p class="text-base md:text-lg text-on-surface-variant max-w-2xl">
+          Mengenal lebih dekat para pengurus yang berdedikasi menggerakkan visi dan misi Karang Taruna Purabhakti.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-lg max-w-4xl mx-auto w-full">
+        <!-- Baris 1: Penasihat -->
+        <div class="flex justify-center">
+          <div class="w-full max-w-md bg-surface-container-lowest border border-outline-variant/50 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 group flex flex-col sm:flex-row">
+            <div class="sm:w-2/5 aspect-square sm:aspect-auto shrink-0">
+              <img alt="Samsu Kendar, S. Hut" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="Samsu Kendar, S. Hut - Penasihat.png">
+            </div>
+            <div class="p-lg sm:w-3/5 flex flex-col justify-center gap-xs">
+              <div class="text-secondary text-sm font-semibold uppercase tracking-wider">Penasihat</div>
+              <h3 class="text-primary text-xl font-bold">Samsu Kendar, S. Hut</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Baris 2: Ketua & Wakil Ketua -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
+          <div class="bg-surface-container-lowest border border-outline-variant/50 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 group flex flex-col sm:flex-row">
+            <div class="sm:w-2/5 aspect-square sm:aspect-auto shrink-0">
+              <img alt="Rian Andrianti" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="Rian Andrianti - Ketua.png">
+            </div>
+            <div class="p-lg sm:w-3/5 flex flex-col justify-center gap-xs">
+              <div class="text-secondary text-sm font-semibold uppercase tracking-wider">Ketua</div>
+              <h3 class="text-primary text-xl font-bold">Rian Andrianti</h3>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest border border-outline-variant/50 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 group flex flex-col sm:flex-row">
+            <div class="sm:w-2/5 aspect-square sm:aspect-auto shrink-0">
+              <img alt="Ahmad Riski" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="Ahmad Riski - Wakil Ketua.png">
+            </div>
+            <div class="p-lg sm:w-3/5 flex flex-col justify-center gap-xs">
+              <div class="text-secondary text-sm font-semibold uppercase tracking-wider">Wakil Ketua</div>
+              <h3 class="text-primary text-xl font-bold">Ahmad Riski</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Baris 3: Sekretaris & Bendahara -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
+          <div class="bg-surface-container-lowest border border-outline-variant/50 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 group flex flex-col sm:flex-row">
+            <div class="sm:w-2/5 aspect-square sm:aspect-auto shrink-0">
+              <img alt="Awang Nugraha" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="Awang Nugraha - Sekretaris.png">
+            </div>
+            <div class="p-lg sm:w-3/5 flex flex-col justify-center gap-xs">
+              <div class="text-secondary text-sm font-semibold uppercase tracking-wider">Sekretaris</div>
+              <h3 class="text-primary text-xl font-bold">Awang Nugraha</h3>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest border border-outline-variant/50 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 group flex flex-col sm:flex-row">
+            <div class="sm:w-2/5 aspect-square sm:aspect-auto shrink-0">
+              <img alt="Ahsanul Khatam" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="Ahsanul Khatam - Bendahara.png">
+            </div>
+            <div class="p-lg sm:w-3/5 flex flex-col justify-center gap-xs">
+              <div class="text-secondary text-sm font-semibold uppercase tracking-wider">Bendahara</div>
+              <h3 class="text-primary text-xl font-bold">Ahsanul Khatam</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="kontak" class="py-16 md:py-xxl bg-surface-container-low">
+    <div class="max-w-max-width mx-auto px-4 md:px-lg flex flex-col gap-xl">
+      <!-- Section Header -->
+      <div class="flex flex-col gap-sm">
+        <h2 class="text-primary text-3xl md:text-4xl font-extrabold tracking-tight">Hubungi Karang Taruna Purabhakti</h2>
+        <p class="text-base md:text-lg text-on-surface-variant max-w-3xl leading-relaxed">
+          Kami di sini untuk membantu Anda berkolaborasi, memberikan masukan, dan menjalin komunikasi. Tim pengurus kami siap merespon pertanyaan dan aspirasi Anda.
+        </p>
+      </div>
+
+      <!-- Contact Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+        <!-- Card 1: WhatsApp -->
+        <div class="bg-surface-container-lowest border border-outline-variant/40 rounded-2xl p-6 flex flex-col justify-between hover:shadow-md transition-all duration-300">
+          <div class="flex flex-col gap-md">
+            <div class="flex items-center gap-md">
+              <img src="wa.png" alt="WhatsApp Logo" class="w-12 h-12 object-contain shrink-0">
+              <h3 class="text-xl font-bold text-primary">WhatsApp</h3>
+            </div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">
+              Respon cepat untuk pertanyaan mendesak, koordinasi kegiatan, dan informasi keanggotaan.
+            </p>
+          </div>
+          <a href="https://wa.me/6285709792044" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-xs text-primary font-bold text-sm hover:text-secondary transition-colors mt-lg group">
+            <span>+62 857-0979-2044</span>
+            <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </a>
+        </div>
+
+        <!-- Card 2: Email -->
+        <div class="bg-surface-container-lowest border border-outline-variant/40 rounded-2xl p-6 flex flex-col justify-between hover:shadow-md transition-all duration-300">
+          <div class="flex flex-col gap-md">
+            <div class="flex items-center gap-md">
+              <img src="gmail.png" alt="Gmail Logo" class="w-12 h-12 object-contain shrink-0">
+              <h3 class="text-xl font-bold text-primary">Email</h3>
+            </div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">
+              Kirimkan surat resmi, proposal kerja sama, atau peninjauan program mendalam.
+            </p>
+          </div>
+          <a href="mailto:desapurajaya@outlook.co.id" class="inline-flex items-center gap-xs text-primary font-bold text-sm hover:text-secondary transition-colors mt-lg group">
+            <span>desapurajaya@outlook.co.id</span>
+            <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </a>
+        </div>
+
+        <!-- Card 3: Instagram -->
+        <div class="bg-surface-container-lowest border border-outline-variant/40 rounded-2xl p-6 flex flex-col justify-between hover:shadow-md transition-all duration-300">
+          <div class="flex flex-col gap-md">
+            <div class="flex items-center gap-md">
+              <img src="ig.png" alt="Instagram Logo" class="w-12 h-12 object-contain shrink-0">
+              <h3 class="text-xl font-bold text-primary">Instagram</h3>
+            </div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">
+              Ikuti update terbaru, dokumentasi kegiatan, dan info publikasi Karang Taruna kami.
+            </p>
+          </div>
+          <a href="https://instagram.com/karangtaruna.purabhakti" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-xs text-primary font-bold text-sm hover:text-secondary transition-colors mt-lg group">
+            <span>@karangtaruna.purabhakti</span>
+            <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-primary dark:bg-tertiary text-on-primary dark:text-on-tertiary w-full py-xl border-t border-outline-variant/20">
+    <div class="max-w-max-width mx-auto px-4 md:px-lg flex flex-col md:flex-row justify-between items-center gap-lg">
+      <div class="flex flex-col items-center md:items-start gap-xs text-center md:text-left">
+        <div class="flex items-center gap-sm">
+          <img src="logo.jpg" alt="Logo Karang Taruna" class="h-8 w-auto object-contain rounded-md">
+          <span class="text-xl md:text-2xl font-bold">Karang Taruna Purabhakti</span>
+        </div>
+        <p class="text-on-primary/80 text-xs md:text-sm max-w-xs mt-1">
+          Pekon Purajaya. Bersatu, Berkarya, Membangun Desa.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-md text-sm">
+        <a class="text-secondary-fixed font-bold hover:underline" href="#hero">Beranda</a>
+        <a class="text-on-primary/80 hover:text-secondary-fixed transition-colors" href="#profil">Profil</a>
+        <a class="text-on-primary/80 hover:text-secondary-fixed transition-colors" href="#struktur">Struktur</a>
+        <a class="text-on-primary/80 hover:text-secondary-fixed transition-colors" href="#kontak">Kontak</a>
+      </div>
+
+      <div class="text-on-primary/60 text-xs text-center md:text-right">
+        © 2026 Karang Taruna Purabhakti. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactivity Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Hero Background Slider
+      const slides = [
+        document.getElementById('slide1'),
+        document.getElementById('slide2'),
+        document.getElementById('slide3')
+      ];
+      let currentSlide = 0;
+
+      if (slides[0]) {
+        setInterval(() => {
+          slides[currentSlide].style.opacity = '0';
+          currentSlide = (currentSlide + 1) % slides.length;
+          slides[currentSlide].style.opacity = '1';
+        }, 5000);
+      }
+
+      // Mobile Menu Toggle
+      const menuBtn = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+          mobileMenu.classList.toggle('flex');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+          });
+        });
+      }
+
+      // Dynamic Nav Active State on Scroll
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('header nav a');
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          if (window.scrollY >= (sectionTop - 120)) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('text-secondary', 'dark:text-secondary-fixed', 'font-bold', 'border-b-2', 'border-secondary', 'dark:border-secondary-fixed');
+          link.classList.add('text-on-surface-variant', 'dark:text-on-surface');
+          
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('text-secondary', 'dark:text-secondary-fixed', 'font-bold', 'border-b-2', 'border-secondary', 'dark:border-secondary-fixed');
+            link.classList.remove('text-on-surface-variant', 'dark:text-on-surface');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
