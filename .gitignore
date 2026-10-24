@@ -3,3 +3,4 @@ Thumbs.db
 .netlify/
 node_modules/
 *.log
+.env

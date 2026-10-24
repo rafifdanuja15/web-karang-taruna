@@ -116,14 +116,21 @@
       <nav class="hidden md:flex gap-lg items-center">
         <a class="text-secondary dark:text-secondary-fixed font-bold border-b-2 border-secondary dark:border-secondary-fixed py-1 transition-all" href="#hero">Beranda</a>
         <a class="text-on-surface-variant dark:text-on-surface hover:text-primary dark:hover:text-primary-fixed-dim py-1 transition-colors" href="#profil">Profil</a>
+        <a class="text-on-surface-variant dark:text-on-surface hover:text-primary dark:hover:text-primary-fixed-dim py-1 transition-colors" href="#aktivitas">Aktivitas</a>
         <a class="text-on-surface-variant dark:text-on-surface hover:text-primary dark:hover:text-primary-fixed-dim py-1 transition-colors" href="#struktur">Struktur</a>
         <a class="text-on-surface-variant dark:text-on-surface hover:text-primary dark:hover:text-primary-fixed-dim py-1 transition-colors" href="#kontak">Kontak</a>
       </nav>
 
-      <!-- Tombol Join Us Mengarah ke Instagram -->
-      <a href="https://instagram.com/karangtaruna.purabhakti" target="_blank" rel="noopener noreferrer" class="hidden md:flex bg-secondary text-on-secondary px-lg py-sm rounded-full font-bold hover:opacity-90 active:scale-95 transition-all">
+      <!-- Tombol Join Us & Login Admin -->
+      <div class="hidden md:flex items-center gap-sm">
+        <a href="https://instagram.com/karangtaruna.purabhakti" target="_blank" rel="noopener noreferrer" class="bg-secondary text-on-secondary px-lg py-sm rounded-full font-bold hover:opacity-90 active:scale-95 transition-all">
         Join Us
       </a>
+        <a href="login.html" class="border border-primary/30 text-primary hover:bg-primary hover:text-on-primary px-md py-sm rounded-full font-bold transition-all text-sm flex items-center gap-xs">
+          <span class="material-symbols-outlined text-lg">admin_panel_settings</span>
+          <span>Login Admin</span>
+        </a>
+      </div>
 
       <!-- Mobile Menu Button -->
       <button id="menu-toggle" aria-label="Toggle Menu" class="md:hidden p-sm text-primary flex items-center justify-center">
@@ -136,8 +143,13 @@
   <nav id="mobile-menu" class="md:hidden fixed top-16 inset-x-0 bg-surface shadow-lg hidden flex-col z-40 border-b border-outline-variant transition-all">
     <a class="px-margin-mobile py-md text-secondary font-bold border-b border-surface-container-low" href="#hero">Beranda</a>
     <a class="px-margin-mobile py-md text-on-surface-variant hover:bg-surface-container-low border-b border-surface-container-low" href="#profil">Profil</a>
+    <a class="px-margin-mobile py-md text-on-surface-variant hover:bg-surface-container-low border-b border-surface-container-low" href="#aktivitas">Aktivitas</a>
     <a class="px-margin-mobile py-md text-on-surface-variant hover:bg-surface-container-low border-b border-surface-container-low" href="#struktur">Struktur</a>
-    <a class="px-margin-mobile py-md text-on-surface-variant hover:bg-surface-container-low" href="#kontak">Kontak</a>
+    <a class="px-margin-mobile py-md text-on-surface-variant hover:bg-surface-container-low border-b border-surface-container-low" href="#kontak">Kontak</a>
+    <a class="px-margin-mobile py-md text-primary font-bold hover:bg-surface-container-low flex items-center gap-xs" href="login.html">
+      <span class="material-symbols-outlined text-lg">admin_panel_settings</span>
+      <span>Login Admin</span>
+    </a>
   </nav>
 
   <!-- Hero Section -->
@@ -213,9 +225,29 @@
       </div>
     </div>
   </section>
+  <!-- Aktivitas & Kegiatan (diisi dari database lewat js/home-activities.js) -->
+  <section id="aktivitas" class="py-16 md:py-xxl bg-surface">
+    <div class="max-w-max-width mx-auto px-4 md:px-lg flex flex-col gap-xl">
+      <div class="text-center flex flex-col items-center gap-sm">
+        <span class="w-12 h-1 bg-secondary rounded-full"></span>
+        <h2 class="text-primary text-2xl md:text-headline-lg font-bold">Aktivitas & Kegiatan</h2>
+        <p class="text-base md:text-lg text-on-surface-variant max-w-2xl">
+          Rangkaian program dan pemuda dalam memberikan kontribusi nyata bagi kemajuan Pekon Purajaya.
+        </p>
+      </div>
+      <div id="activities-grid" class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+        <p class="col-span-full text-center text-on-surface-variant">Memuat aktivitas…</p>
+      </div>
+      <div class="text-center">
+        <button id="activities-more" type="button" hidden class="border border-primary/30 text-primary hover:bg-primary hover:text-on-primary px-lg py-sm rounded-full font-bold transition-all">Tampilkan semua aktivitas</button>
+      </div>
+    </div>
+  </section>
+
+
 
   <!-- Structural Section -->
-  <section id="struktur" class="py-16 md:py-xxl bg-surface">
+  <section id="struktur" class="py-16 md:py-xxl bg-surface-container-lowest">
     <div class="max-w-max-width mx-auto px-4 md:px-lg flex flex-col gap-xl">
       <div class="text-center flex flex-col items-center gap-sm">
         <span class="w-12 h-1 bg-secondary rounded-full"></span>
@@ -371,6 +403,7 @@
       <div class="flex flex-wrap justify-center gap-md text-sm">
         <a class="text-secondary-fixed font-bold hover:underline" href="#hero">Beranda</a>
         <a class="text-on-primary/80 hover:text-secondary-fixed transition-colors" href="#profil">Profil</a>
+        <a class="text-on-primary/80 hover:text-secondary-fixed transition-colors" href="#aktivitas">Aktivitas</a>
         <a class="text-on-primary/80 hover:text-secondary-fixed transition-colors" href="#struktur">Struktur</a>
         <a class="text-on-primary/80 hover:text-secondary-fixed transition-colors" href="#kontak">Kontak</a>
       </div>
@@ -443,5 +476,7 @@
       });
     });
   </script>
+  <script src="js/api.js"></script>
+  <script src="js/home-activities.js"></script>
 </body>
 </html>

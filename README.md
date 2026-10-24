@@ -1,73 +1,63 @@
-# Website Profil Karang Taruna Purabhakti
+# Website Karang Taruna Purabhakti + Admin Aktivitas
 
-Website profil resmi Karang Taruna Purabhakti, Pekon Purajaya — berisi profil organisasi, struktur pengurus, dan kontak. Dibangun sebagai single-page static site dari desain [Google Stitch](https://stitch.withgoogle.com/), siap di-deploy ke Netlify tanpa proses build.
+Website profil Karang Taruna Purabhakti, Pekon Purajaya. Pengurus bisa menambah/mengubah/menghapus aktivitas lewat halaman admin tanpa coding: cukup isi detail dan upload foto.
 
-## Struktur Proyek
+**Stack:** HTML statis + Tailwind CDN · Netlify Functions (backend) · [Neon](https://neon.tech) Postgres (data) · [Cloudinary](https://cloudinary.com) (foto).
+
+## Struktur
 
 ```
-.
-├── index.html                       # Halaman utama (satu file, semua section)
-├── netlify.toml                     # Konfigurasi deploy Netlify
-├── DESIGN.md                        # Design tokens (warna & tipografi) hasil ekspor Stitch
-├── logo.jpg                         # Logo organisasi
-├── home-1.jpg / home-2.jpeg / home-3.jpg   # Gambar slider hero
-├── ketua-rian-andrianti.png
-├── wakil-ketua-ahmad-riski.png
-├── sekretaris-awang-nugraha.png
-├── bendahara-ahsanul-khatam.png
-├── penasihat-samsu-kendar.png       # Foto pengurus (untuk section Struktur Organisasi)
-├── wa.png / gmail.png / ig.png      # Ikon kontak
-└── .gitignore
+index.html, aktivitas.html      Halaman publik (aktivitas diambil dari database)
+login.html                      Login admin
+admin.html, admin-edit.html     Daftar aktivitas & form tambah/edit
+js/                             api.js (helper), home-activities.js, aktivitas-page.js, admin*.js
+netlify/functions/              auth, activities (publik), admin-activities, admin-upload
+netlify/lib/shared.mjs          Koneksi DB, sesi login, validasi, helper Cloudinary
+db/schema.sql                   Skema tabel
+scripts/setup.mjs               Membuat tabel + akun admin + 3 aktivitas awal
 ```
 
-## Tech Stack
+## Setup (sekali saja)
 
-- HTML5 statis (single page, section: Beranda, Profil, Struktur, Kontak)
-- [Tailwind CSS via CDN](https://tailwindcss.com/) (dikonfigurasi inline dengan design tokens kustom)
-- Google Fonts: Hanken Grotesk & Material Symbols Outlined
-- Vanilla JavaScript untuk slider hero, menu mobile, dan highlight navigasi aktif saat scroll
+1. **Neon:** buat project, salin *connection string* (pilih **Pooled connection**) → `DATABASE_URL`.
+2. **Cloudinary:** daftar paket Free, salin Cloud name, API Key, API Secret dari *Settings → API Keys*.
+3. Salin `.env.example` menjadi `.env`, lalu isi semuanya. Buat `JWT_SECRET` dengan:
+   `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`
+   Isi juga `ADMIN_USERNAME` dan `ADMIN_PASSWORD` (min. 8 karakter) untuk akun admin pertama.
+4. Jalankan:
+   ```bash
+   npm install
+   npm run db:setup      # buat tabel, akun admin, dan 3 aktivitas awal
+   npx netlify-cli dev   # buka http://localhost:8888
+   ```
 
-Tidak ada proses build (bundler/npm) — semua sudah jadi HTML/CSS/JS statis, cukup di-serve apa adanya.
-
-## Menjalankan secara Lokal
-
-Karena tidak ada dependency, cukup buka `index.html` langsung di browser, atau jalankan local server sederhana agar path relatif berjalan konsisten:
-
-```bash
-python3 -m http.server 8000
-# lalu buka http://localhost:8000
-```
+Jalankan `npm run db:setup` lagi kapan pun untuk mengganti password admin (sesuai isi `.env`).
 
 ## Deploy ke Netlify
 
-### Opsi 1 — Drag & Drop (paling cepat)
-1. Buka [app.netlify.com/drop](https://app.netlify.com/drop)
-2. Seret seluruh folder proyek ini ke halaman tersebut
-3. Situs langsung online dengan URL acak dari Netlify (bisa diganti nama di **Site settings > Domain management**)
+Drag & drop **tidak bisa** dipakai lagi (Functions butuh build). Gunakan deploy dari Git:
 
-### Opsi 2 — Deploy dari Git (disarankan untuk update berkelanjutan)
-1. Push folder ini ke repository GitHub/GitLab/Bitbucket
-2. Di Netlify dashboard, klik **Add new site > Import an existing project**
-3. Hubungkan ke repository tersebut
-4. Build settings akan otomatis terbaca dari `netlify.toml`:
-   - **Build command:** (kosong, tidak diperlukan)
-   - **Publish directory:** `.`
-5. Klik **Deploy site**
+1. Push folder ini ke GitHub/GitLab (file `.env` otomatis diabaikan oleh `.gitignore`).
+2. Netlify → *Add new site → Import an existing project*. Pengaturan build terbaca dari `netlify.toml`.
+3. *Site configuration → Environment variables*: isi `DATABASE_URL`, `JWT_SECRET`, `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`.
+4. Deploy. (`ADMIN_*` hanya dipakai di komputer lokal saat `db:setup`; database-nya sama dengan produksi.)
 
-### Opsi 3 — Netlify CLI
-```bash
-npm install -g netlify-cli
-netlify deploy --prod
-```
+## Cara pakai admin
 
-## Kustomisasi
+1. Buka `/login.html` (atau tombol **Login Admin** di website) dan masuk.
+2. **Tambah aktivitas** → isi judul, kategori, tanggal, ringkasan, deskripsi → pilih foto (boleh banyak) → **Simpan aktivitas**.
+3. Foto pertama jadi sampul. Gunakan panah untuk mengatur urutan atau **Jadikan sampul**.
+4. Hilangkan centang **Tampilkan di website** untuk menyimpan sebagai draf.
+5. Deskripsi: pisahkan paragraf dengan satu baris kosong; awali paragraf dengan `>` untuk kutipan.
 
-- **Warna & tipografi**: diatur di blok `tailwind.config` pada `<head>` `index.html`, mengikuti token dari `DESIGN.md`.
-- **Konten teks** (profil, statistik, nama pengurus): edit langsung di section terkait pada `index.html` (`#profil`, `#struktur`).
-- **Kontak**: nomor WhatsApp, email, dan Instagram ada di section `#kontak` — ganti link `href` sesuai kebutuhan.
-- **Gambar**: ganti file dengan nama yang sama, atau ganti nama file lalu perbarui atribut `src` yang sesuai di `index.html`.
+Foto otomatis dikecilkan (maks 1600 px, WebP) di browser sebelum diunggah, dan Cloudinary mengoptimasinya saat ditampilkan.
 
-## Catatan
+## Keamanan & catatan
 
-- Nama file gambar sudah dirapikan (tanpa spasi/koma) agar aman digunakan sebagai URL di semua hosting statis, termasuk Netlify.
-- Repo asli dari hasil ekspor Google Stitch terhubung ke `github.com/rafifdanuja15/web-karang-taruna`.
+- Password disimpan sebagai hash bcrypt; sesi memakai cookie `HttpOnly` + `SameSite=Strict`; login dibatasi 5 percobaan gagal per 15 menit per IP.
+- Semua endpoint admin memeriksa sesi di server. Halaman `admin.html` yang terbuka tanpa login tidak menampilkan data apa pun.
+- Isi aktivitas selalu di-escape saat ditampilkan (tidak ada HTML mentah dari admin).
+- Foto yang diunggah lalu tidak jadi disimpan (halaman ditutup sebelum klik Simpan) tertinggal di Cloudinary; bersihkan sesekali dari dashboard Cloudinary folder `karang-taruna/aktivitas`.
+- Preview link (WhatsApp, Google) untuk halaman detail aktivitas memakai judul/gambar umum, karena halaman detail dirender di browser.
+- Menambah akun admin lain: jalankan `db:setup` dengan `ADMIN_USERNAME` berbeda.
+- Kategori diatur di `netlify/lib/shared.mjs` dan `js/api.js` (ubah di kedua file).
