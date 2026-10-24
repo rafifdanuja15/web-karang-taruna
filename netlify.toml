@@ -5,6 +5,9 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  # ADMIN_USERNAME is a plain word ("admin") that appears in page names and routes,
+  # not a secret. ADMIN_PASSWORD and the Cloudinary keys are still scanned.
+  SECRETS_SCAN_OMIT_KEYS = "ADMIN_USERNAME"
 
 [functions]
   node_bundler = "esbuild"
